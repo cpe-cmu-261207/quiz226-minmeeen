@@ -6,7 +6,7 @@ const color = document.querySelector('#color')
 const btn_search  = document.getElementById('search')
 const btn_reset = document.getElementById('reset')
 const text = document.getElementById('text');
-
+const oritext = document.getElementById('text');
 // define more constants and variables here
 
 btn_toggle.onclick = () => {
@@ -20,21 +20,31 @@ btn_toggle.onclick = () => {
 
 
 btn_search.onclick = () => {
-  // let num = length.value;
-  // let para = document.getElementById('text');
-  document.getElementById('text').innerHTML = '';
+  // let oritext;
+  // oritext = JSON.parse(localStorage.getItem("todos"))
+  // text.innerText = "";
+  // console.log(oritext);
 
+  let oritexts;
+  if (localStorage.getItem("oritexts") === null) {
+      oritexts = [];
+  } else {
+      oritexts = JSON.parse(localStorage.getItem("oritexts"));
+  }
 
-
+  oritexts.unshift(text);
+  localStorage.setItem("oritexts", JSON.stringify(oritexts));
 
 }
 
 btn_reset.onclick = () => {
-  // const newText = document.createElement("p");
-  // newText.innerText = ("text");
-  document.getElementById("text").reset();
+  text.innerText = oritext;
+  let oritext;
+  oritext = JSON.parse(localStorage.getItem("todos"));
 }
 
 // const color = (ev) => {
 // 	document.querySelector('body').style.backgroundColor = ev.target.value	
 // }
+
+
